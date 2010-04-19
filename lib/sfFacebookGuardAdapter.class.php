@@ -84,7 +84,8 @@ abstract class sfFacebookGuardAdapter
    * @since 2009-05-17
    */
   public function getUserFacebookUid($user)
-  {
+  {     
+
     return $this->getUserProfileProperty($user, 'facebook_uid');
   }
 
@@ -212,7 +213,7 @@ abstract class sfFacebookGuardAdapter
     $sfGuardUser = new sfGuardUser();
     $sfGuardUser->setUsername('Facebook_'.$facebook_uid);
     $this->setUserFacebookUid($sfGuardUser, $facebook_uid);
-    sfFacebookConnect::newSfGuardConnectionHook(&$sfGuardUser, $facebook_uid);
+    sfFacebookConnect::newSfGuardConnectionHook($sfGuardUser, $facebook_uid);
 
     // Save them into the database using a transaction to ensure a Facebook sfGuardUser cannot be stored without its facebook uid
     try
